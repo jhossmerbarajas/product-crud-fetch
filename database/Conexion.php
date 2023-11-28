@@ -57,10 +57,19 @@ class Conexion
 		return $this->query->fetchAll(PDO::FETCH_ASSOC);
 	}
 
+	function first () {
+		return $this->query->fetch(PDO::FETCH_ASSOC);
+	}
+
 
 	function all () {
 		$sql = "SELECT * FROM product";
 		return $this->query($sql)->get();
+	}
+
+	function findOne ($id) {
+		$sql = "SELECT * FROM product WHERE id = ?";
+		return $this->query($sql, [$id])->first();
 	}
 
 
@@ -72,5 +81,35 @@ class Conexion
 
 		$sql = "INSERT INTO product ({$columns}) VALUES (" . str_repeat('?, ', count($values) -1) . "?)";
 		$this->query($sql, $values);
+	}
+
+	function where ($column, $operator, $value = null) {
+		if($value == null) {
+			$value = $operator;
+			$operator = "=";
+		}
+
+		$sql = "SELECT * FROM product WHERE {$column} {$operator}";
+		$this->query($sql, [$value]);
+
+		return $this;
+	}
+
+	function update ($id, $data) {
+		$fields = [];
+
+		foreach ($data as $key => $value) {
+			$fields[] = "{$key} = ?";
+		}
+
+		$fields = implode(',', $fields);
+
+		$sql = "UPDATE product SET {$fields} WHERE id = ?";
+
+		$value = array_values($data);
+		$value[] = $id;
+
+		$this->query($sql, $value);
+		return $this->all();
 	}
 }

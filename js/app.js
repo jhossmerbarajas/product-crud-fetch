@@ -1,12 +1,14 @@
-import { UI } from './UI.js'
-const ui = new UI;
-
 import { FetchApi } from './FetchApi.js'
 const api = new FetchApi;
 
+import { UI } from './UI.js'
+const ui = new UI
 
+import { eventsModal } from './Events.js'
+
+
+/* POST */
 const form = document.querySelector("#form-register");
-
 const productsPost = async (e) => {
 	e.preventDefault();
 
@@ -21,8 +23,11 @@ const productsPost = async (e) => {
 form.addEventListener("submit", productsPost);
 
 
+/* UPDATE */
+
 
 
 // GET
 const getData = api.methodGet();
-ui.cardView(getData);
+ui.cardView(getData, eventsModal);
+

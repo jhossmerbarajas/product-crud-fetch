@@ -28,7 +28,7 @@
 		</form>
 
 		<div id="modal" class="modal">
-		  <div class="modal-content">
+		  <!-- <div class="modal-content">
 		    <span class="close">&times;</span>
 		    <h2>Formulario</h2>
 		    
@@ -38,7 +38,7 @@
 		      <input type="submit" value="Enviar">
 		    </form>
 
-		  </div>
+		  </div> -->
 		</div>
 
 		<div id="show-product"></div>

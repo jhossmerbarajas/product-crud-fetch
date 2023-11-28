@@ -1,6 +1,8 @@
+
+
 export class UI 
 {
-	async cardView (data) {
+	async cardView (data, event) {
 
 		const datos = await data;
 		const showProduct = document.getElementById("show-product");
@@ -18,7 +20,7 @@ export class UI
 			form.setAttribute("id", "form-delete");
 
 			const button = this.button("Editar", datos[i].id);
-			button.addEventListener("click", () => alert("hola"));
+			button.addEventListener("click", event);
 
 			const divCard = this.div();
 			divCard.classList.add("card-product");
@@ -64,4 +66,29 @@ export class UI
 
 		return input;
 	}
+
+	modal (data) {
+		
+		const modal = document.getElementById("modal");
+
+		const div = ` 
+			
+			  <div class="modal-content">
+			    <span class="close">&times;</span>
+			    <h2>Formulario</h2>
+			    
+			    <form id="form-update">
+			      <input type="text" id="name" name="name" value="${data.name}">
+			      <input type="number" id="price"  value="${data.price}">
+			      <input type="submit" value="Update">
+			    </form>
+
+			  </div>
+			
+		`;
+
+	
+		modal.innerHTML = div
+	}
+
 }

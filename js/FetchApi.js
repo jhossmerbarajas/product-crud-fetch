@@ -27,4 +27,37 @@ export class FetchApi
 		
 		return response;
 	}
+
+	async findOneById (id) {
+		try {
+			const response = await fetch (`products/findOneProduct.php`, { 
+				method: "POST",
+				headers: { "Content-Type": "application/json" },
+				body: JSON.stringify(id) 
+			});
+			const res = await response.json();
+			
+			return res;
+		} catch(e) {
+			// statements
+			console.log(e);
+		}
+	}
+
+	async update (uri, data, method) {
+		try {
+			const res = await fetch(uri, {
+				headers: { "Content-Type": "application/json" },
+				method,
+				body: JSON.stringify(data)
+			});
+			
+			const response = await res.json()
+			return await this.methodGet()
+			
+		} catch(e) {
+			// statements
+			console.log(e);
+		}
+	}
 }
