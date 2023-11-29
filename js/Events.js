@@ -6,7 +6,17 @@ const api = new FetchApi
 
 export const eventsModal = (e) => {
 	const dataId = e.target.getAttribute("data-id")
-	showModal(dataId)
+	const buttonDelete = e.target.innerText
+
+	if(buttonDelete == "Delete") {
+		// eventDelete(dataId)
+		console.log(e.target.getAttribute("data-id"))
+	} else {
+		// showModal(dataId)
+		console.log(e.target.getAttribute("data-id"))
+	}
+	
+	
 	return dataId
 }
 
@@ -42,4 +52,16 @@ const eventUpdate = async (id) => {
 		ui.cardView(getData, eventsModal);
 	 });
 	    
+}
+
+
+
+
+
+// DELETE
+export const eventDelete = async (id) => {
+	
+	await api.delete("products/deleteProduct.php", id, "POST")
+	const getData = await api.methodGet();
+	ui.cardView(getData, eventsModal);
 }

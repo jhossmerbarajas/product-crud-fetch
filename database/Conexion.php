@@ -112,4 +112,9 @@ class Conexion
 		$this->query($sql, $value);
 		return $this->all();
 	}
+
+	function delete ($id) {
+		$sql = "DELETE FROM product WHERE id = ?";
+		$this->query($sql, [$id]);
+	}
 }

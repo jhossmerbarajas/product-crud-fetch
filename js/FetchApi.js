@@ -60,4 +60,21 @@ export class FetchApi
 			console.log(e);
 		}
 	}
+
+	async delete (uri, data, method) {
+		try {
+			const res = await fetch(uri, {
+				headers: { "Content-Type": "application/json" },
+				method,
+				body: JSON.stringify(data)
+			});
+			console.log(await res.json())
+			const response = await res.json()
+			 return response
+			
+		} catch(e) {
+			// statements
+			console.log(e);
+		}
+	}
 }

@@ -23,8 +23,6 @@ const productsPost = async (e) => {
 form.addEventListener("submit", productsPost);
 
 
-/* UPDATE */
-
 
 
 // GET

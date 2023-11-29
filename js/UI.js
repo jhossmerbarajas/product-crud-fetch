@@ -19,8 +19,14 @@ export class UI
 			const form = this.form(datos[i].id);
 			form.setAttribute("id", "form-delete");
 
-			const button = this.button("Editar", datos[i].id);
-			button.addEventListener("click", event);
+			const buttonEdit = this.button("Edit", datos[i].id);
+			buttonEdit.addEventListener("click", event);
+			buttonEdit.classList("btn-primary")
+
+			const buttonDelete = this.button("Delete", datos[i].id);
+			buttonDelete.setAttribute("id", "button-delete")
+			buttonDelete.classList.add("btn-danger")
+			buttonDelete.addEventListener("click", event);
 
 			const divCard = this.div();
 			divCard.classList.add("card-product");
@@ -28,8 +34,8 @@ export class UI
 
 			divCard.append(divName)
 			divCard.append(divPrice)
-			buttonsActions.append(button)
-			buttonsActions.append(form)
+			buttonsActions.append(buttonEdit)
+			buttonsActions.append(buttonDelete)
 			
 			divCard.append(buttonsActions);
 			showProduct.appendChild(divCard);	
@@ -63,6 +69,7 @@ export class UI
 		input.setAttribute("type", "submit");
 		input.setAttribute("data-delete", id)
 		input.setAttribute("id", "delete")
+		input.setAttribute("value", "Eliminar")
 
 		return input;
 	}
